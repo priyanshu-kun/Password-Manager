@@ -1,0 +1,113 @@
+.Sidebar {
+    height: 100%;
+    position: fixed;
+    width: 18rem;
+    background-color: #fbfaf8;
+    border-right: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.sidebar-toogle-btn {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--default-text-color);
+}
+
+.sidebar-toogle-btn:hover {
+    background-color: var(--shadow-color);
+}
+
+.content {
+    height: calc(80% - 3rem);
+    padding-top: 4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.content ul {
+    padding: 0 1rem;
+}
+
+.content ul li {
+    padding: 0.8rem 0;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    /* font-size: 1.2rem; */
+    margin-bottom: 0.6rem;
+    font-weight: var(--default-weight);
+    color: var(--default-text-color);
+    cursor: pointer;
+    background-color: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.content ul li:hover {
+    background-color: var(--shadow-color);
+}
+
+.content ul li:before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 80%;
+    left: -3rem;
+    border-radius: 0 3px 3px 0;
+    background-color: var(--accent-color);
+    transition: left 0.1s ease;
+}
+
+.content ul li:hover:before {
+    left: -1rem;
+}
+
+
+.content--icon {
+    margin: 0 10px;
+    color: var(--accent-color);
+}
+
+.footer {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.footer a {
+    margin-top: 1.6rem;
+    font-weight: var(--heading-weight);
+    text-decoration: none;
+    color: var(--default-text-color);
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer button {
+    margin-top: 1rem;
+    width: 65%;
+    box-sizing: border-box;
+    height: 30%;
+    padding: 0.6rem;
+    cursor: pointer;
+    font-size: 1rem;
+    /* background: #bbb2e9; */
+    background: var(--accent-color);
+    font-weight: var(--default-weight);
+    border-radius: var(--border-radius);
+    border: none;
+    transition: background 0.2s ease;
+    /* box-shadow: inset 0 0 10px 2px #9488cf; */
+    color: #fff;
+}
+
+.footer button:hover {
+    background: rgb(223, 119, 0);
+}

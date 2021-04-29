@@ -8,8 +8,11 @@ const connection = mysql.createConnection({
     database: 'password manager'
 })
 
-if (connection) {
-    console.log("App connected to database successfully...");
-}
+connection.connect(err => {
+    if (err) {
+        throw new Error("Error connecting to Db");
+    }
+    console.log("Connection established");
+})
 
 module.exports = connection;
