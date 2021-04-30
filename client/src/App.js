@@ -1,14 +1,14 @@
 import React from 'react';
-import Sidebar from "./components/sidebar/Sidebar.jsx";
-import Navbar from "./components/navbar/Navbar"
+import Navbar from "./components/Navbar/Navbar"
+
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
-            <Sidebar />
-            <div className="main-page">
-                <Navbar />
+            <Navbar />
+            <div className="md:container-lg md:mx-auto p-3 h-80 bg-gray-100">
+
             </div>
         </div>
     )

@@ -3,15 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --border-radius: 0.3rem;
-    --default-text-color: rgba(0, 0, 0, 0.6);
-    /* --accent-color: rgb(65, 194, 168); */
-    --accent-color: orange;
-    --shadow-color: rgba(255, 145, 0, 0.2);
-    --default-weight: 700;
-    --heading-weight: 900;
-}
+:root {}
 
 html,
 body,
@@ -146,22 +138,4 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-
-
-.App {
-    width: 16rem;
-    min-width: 14rem;
-    max-width: 18rem;
-    height: 100vh;
-    display: flex;
-}
-
-.main-page {
-    position: absolute;
-    width: calc(100% - 18rem);
-    height: 100vh;
-    right: 0;
-    top: 0;
-    /* background-color: red; */
 }
