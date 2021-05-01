@@ -111,7 +111,7 @@ section {
 
 body {
     line-height: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     background-color: #fff;
@@ -138,4 +138,31 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+.custom-hover {
+    border: 1px solid transparent;
+}
+
+.custom-hover:hover {
+    transition: all 0.2s ease;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* .custom-style:hover {
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+} */
+
+.hover-ele {
+
+    width: 35px;
+    height: 35px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.hover-ele:hover {
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
