@@ -72,7 +72,7 @@ function Profile() {
                                             href="http://blank"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border'
+                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 pointer-events-none'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faUserSecret} /><span className="text-sm font-semibold opacity-80">Secure Notes</span>
@@ -85,7 +85,7 @@ function Profile() {
                                             href="http://blank"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border'
+                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 cursor-not-allowed pointer-events-none'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faInfoCircle} /><span className="text-sm font-semibold  opacity-80">Personal Info</span>

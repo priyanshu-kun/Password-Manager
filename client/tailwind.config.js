@@ -13,7 +13,8 @@ module.exports = {
         accent: "#ffa30e",
         dark: '#000101',
         altDark: '#191918',
-        hover: "#d68400"
+        hover: "#d68400",
+        input_bg: '#F2F2F4'
       },
       zIndex: {
         '1': '1',
@@ -29,6 +30,9 @@ module.exports = {
       },
       fontSize: {
         "xxs": '0.8rem'
+      },
+      boxShadow: {
+        hover_sh: '0 0 0 3px #ff88004d'
       }
     }
   },

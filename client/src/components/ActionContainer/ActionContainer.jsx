@@ -23,13 +23,13 @@ function ActionContainer() {
             <div className="md:container-lg p-3 w-3/4 h-36 rounded-b-lg bg-gray-100 fixed top-16 left-1/2 transform -translate-x-2/4 grid place-items-center z-2">
                 <div className="flex relative z-999">
                     <button onClick={openModal} className="mr-4 w-40 rounded-md h-14 bg-black text-white font-semibold text-lg flex justify-center items-center outline-none shadow hover:opacity-60 transition duration-200"><PlusIcon className="w-8 h-8 mr-1" />Add New</button>
-                    <button className="ml-4 w-40 rounded-md h-14 bg-accent text-white font-semibold text-lg flex justify-center items-center outline-none border hover:opacity-60 transition duration-200"><ShareIcon className="w-6 h-6 mr-2" />Share</button>
+                    <button className="ml-4 w-40 rounded-md h-14 bg-accent text-white font-semibold text-lg flex justify-center items-center outline-none border hover:opacity-60 transition duration-200 opacity-30 pointer-events-none cursor-not-allowed"><ShareIcon className="w-6 h-6 mr-2" />Share</button>
                 </div>
                 <Transition show={open} as={Fragment}>
                     <Dialog
                         as="div"
-                        style={{ background: "rgba(0,0,0,0.3)" }}
-                        className="fixed inset-0 z-10 overflow-y-auto"
+                        // style={{ background: "rgba(0,0,0,0.3)" }}
+                        className="fixed inset-0 z-10 bg-yellow-200 overflow-y-auto"
                         initialFocus={cancelButtonRef}
                         static
                         open={open}
@@ -64,31 +64,54 @@ function ActionContainer() {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl mt-20">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
+                                        className="text-2xl opacity-60 my-3 font-black leading-6 text-gray-900"
                                     >
-                                        Register Password
+                                        Register New Password
                 </Dialog.Title>
-                                    <div className="mt-2 w-full flex justify-center bg-red-500">
-                                        <form>
-                                            <input className="my-1" type="text" />
-                                            <input className="my-1" type="text" />
-                                            <input className="my-1" type="text" />
-                                            <input className="my-1" type="text" />
-                                            <input className="my-1" type="text" />
-                                            <input className="my-1" type="text" />
+                                    <div className="mt-2 w-full flex justify-center">
+                                        <form className="w-full">
+                                            <label className="block mt-2 w-full" htmlFor="websiteURL">
+                                                <p className="mb-1 font-bold text-base">Website URL</p>
+                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add website URL" id="websiteURL" />
+                                            </label>
+                                            <label className="block mt-2 w-full" htmlFor="login">
+                                                <p className="mb-1 font-bold text-base">Login</p>
+                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Login details" id="login" />
+                                            </label>
+                                            <label className="block mt-2 w-full" htmlFor="password">
+                                                <p className="mb-1 font-bold text-base">Password</p>
+                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Password" id="password" />
+                                            </label>
+                                            <br />
+                                            <br />
+                                            <label className="block mt-2 w-full" htmlFor="name">
+                                                <p className="mb-1 font-bold text-base">Name</p>
+                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add name" id="name" />
+                                            </label>
+                                            <label className="block mt-2 w-full" htmlFor="notes">
+                                                <p className="mb-1 font-bold text-base">Notes</p>
+                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add notes" id="notes" />
+                                            </label>
                                         </form>
                                     </div>
 
-                                    <div className="mt-4">
+                                    <div className="mt-4 w-full flex justify-between">
                                         <button
                                             type="button"
-                                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                                            className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                                             onClick={closeModal}
                                         >
-                                            Got it, thanks!
+                                            cancel
+                  </button>
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-white bg-accent rounded-md hover:bg-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-500"
+                                            onClick={closeModal}
+                                        >
+                                            Submit
                   </button>
                                     </div>
                                 </div>
@@ -96,7 +119,6 @@ function ActionContainer() {
                         </div>
                     </Dialog>
                 </Transition>
-                {/* <h1 className="absolute font-black text-5xl text-white z-1">Keep your password secure here.</h1> */}
             </div>
         </>
     )

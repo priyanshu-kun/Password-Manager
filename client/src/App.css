@@ -165,4 +165,22 @@ table {
 
 .hover-ele:hover {
     border: 1px solid rgba(0, 0, 0, 0.1);
+    /* border: 1px solid ; */
+}
+
+.custom-hover-class {
+    border: 1px solid transparent;
+    /* font-size: ; */
+}
+
+.custom-hover-class::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.custom-hover-class:hover,
+.custom-hover-class:focus {
+    transition: all 0.2s ease;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 3px #ff88004d;
 }
