@@ -147,7 +147,7 @@ table {
 .custom-hover:hover {
     transition: all 0.2s ease;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* .custom-style:hover {
@@ -164,7 +164,7 @@ table {
 }
 
 .hover-ele:hover {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     /* border: 1px solid ; */
 }
 

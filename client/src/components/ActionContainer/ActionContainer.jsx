@@ -1,22 +1,48 @@
-import React from 'react'
+import React, { Fragment, useRef, useEffect, useState } from 'react'
 import { PlusIcon, ShareIcon } from '@heroicons/react/outline'
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef, useEffect, useState } from "react";
+import client_http_req_functions from "../../client-http/password.http";
+// console.log("obj: ", client_http_req_functions.addNewPassword())
 
-
-
+const initialState = {
+    websiteURL: "",
+    login: "",
+    password: "",
+    name: "",
+    notes: ""
+}
 
 function ActionContainer() {
     const [open, setOpen] = useState(false);
+    const [inputState, setInputState] = useState(initialState);
     const cancelButtonRef = useRef();
 
     function closeModal() {
         setOpen(false);
+        setInputState(initialState);
     }
 
     function openModal() {
         setOpen(true);
     }
+
+    function controlInputs(e) {
+        setInputState({ ...inputState, [e.target.name]: e.target.value });
+    }
+
+    function submitInfo(e) {
+        e.preventDefault();
+        client_http_req_functions.addNewPassword(inputState);
+        setInputState(initialState);
+        setOpen(false);
+    }
+
+    useEffect(() => {
+        client_http_req_functions.getAllPasswords().then(res => {
+            console.log(res);
+        }).catch(e => console.error("ERROR: while getting all passwords", e));
+    }, [])
+
     return (
         <>
             {/* Action container */}
@@ -72,48 +98,49 @@ function ActionContainer() {
                                         Register New Password
                 </Dialog.Title>
                                     <div className="mt-2 w-full flex justify-center">
-                                        <form className="w-full">
+                                        <form className="w-full" onSubmit={submitInfo}>
                                             <label className="block mt-2 w-full" htmlFor="websiteURL">
                                                 <p className="mb-1 font-bold text-base">Website URL</p>
-                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add website URL" id="websiteURL" />
+                                                <input value={inputState.websiteURL} name="websiteURL" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add website URL" id="websiteURL" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="login">
                                                 <p className="mb-1 font-bold text-base">Login</p>
-                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Login details" id="login" />
+                                                <input value={inputState.login} name="login" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Login details" id="login" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="password">
                                                 <p className="mb-1 font-bold text-base">Password</p>
-                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Password" id="password" />
+                                                <input value={inputState.password} name="password" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Password" id="password" />
                                             </label>
                                             <br />
                                             <br />
                                             <label className="block mt-2 w-full" htmlFor="name">
                                                 <p className="mb-1 font-bold text-base">Name</p>
-                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add name" id="name" />
+                                                <input value={inputState.name} name="name" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add name" id="name" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="notes">
                                                 <p className="mb-1 font-bold text-base">Notes</p>
-                                                <input className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add notes" id="notes" />
+                                                <textarea value={inputState.notes} name="notes" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add notes" id="notes"></textarea>
                                             </label>
+                                            <div className="mt-4 w-full flex justify-between">
+                                                <button
+                                                    type="button"
+                                                    className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                                                    onClick={closeModal}
+                                                >
+                                                    cancel
+                  </button>
+                                                <button
+                                                    type="submit"
+                                                    className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-white bg-accent rounded-md hover:bg-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-500"
+
+                                                >
+                                                    Submit
+                  </button>
+                                            </div>
                                         </form>
                                     </div>
 
-                                    <div className="mt-4 w-full flex justify-between">
-                                        <button
-                                            type="button"
-                                            className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                                            onClick={closeModal}
-                                        >
-                                            cancel
-                  </button>
-                                        <button
-                                            type="button"
-                                            className="inline-flex justify-center px-12 py-3 text-sm font-semibold text-white bg-accent rounded-md hover:bg-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-500"
-                                            onClick={closeModal}
-                                        >
-                                            Submit
-                  </button>
-                                    </div>
+
                                 </div>
                             </Transition.Child>
                         </div>

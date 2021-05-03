@@ -2,7 +2,6 @@ import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, PlusIcon } from '@heroicons/react/outline'
 import Profile from "./Profile/Profile"
-import "./Navbar.css";
 
 
 function Navbar() {
