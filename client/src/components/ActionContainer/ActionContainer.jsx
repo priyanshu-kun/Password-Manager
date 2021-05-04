@@ -5,6 +5,7 @@ import client_http_req_functions from "../../client-http/password.http";
 // console.log("obj: ", client_http_req_functions.addNewPassword())
 
 const initialState = {
+    email: "",
     websiteURL: "",
     login: "",
     password: "",
@@ -32,16 +33,16 @@ function ActionContainer() {
 
     function submitInfo(e) {
         e.preventDefault();
+        if (!inputState.password || !inputState.websiteURL) {
+            setOpen(false);
+            return alert("Password or websiteURL cannot be empty!")
+        }
         client_http_req_functions.addNewPassword(inputState);
         setInputState(initialState);
         setOpen(false);
+        window.location.reload();
     }
 
-    useEffect(() => {
-        client_http_req_functions.getAllPasswords().then(res => {
-            console.log(res);
-        }).catch(e => console.error("ERROR: while getting all passwords", e));
-    }, [])
 
     return (
         <>
@@ -90,7 +91,7 @@ function ActionContainer() {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl mt-20">
+                                <div className="inline-block w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl mt-20">
                                     <Dialog.Title
                                         as="h3"
                                         className="text-2xl opacity-60 my-3 font-black leading-6 text-gray-900"
@@ -100,26 +101,30 @@ function ActionContainer() {
                                     <div className="mt-2 w-full flex justify-center">
                                         <form className="w-full" onSubmit={submitInfo}>
                                             <label className="block mt-2 w-full" htmlFor="websiteURL">
-                                                <p className="mb-1 font-bold text-base">Website URL</p>
+                                                <p className="mb-1 font-medium text-sm">Email</p>
+                                                <input value={inputState.email} name="email" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add email" id="email" />
+                                            </label>
+                                            <label className="block mt-2 w-full" htmlFor="websiteURL">
+                                                <p className="mb-1 font-medium text-sm">Website URL</p>
                                                 <input value={inputState.websiteURL} name="websiteURL" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add website URL" id="websiteURL" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="login">
-                                                <p className="mb-1 font-bold text-base">Login</p>
+                                                <p className="mb-1 font-medium text-sm">Login</p>
                                                 <input value={inputState.login} name="login" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Login details" id="login" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="password">
-                                                <p className="mb-1 font-bold text-base">Password</p>
+                                                <p className="mb-1 font-medium text-sm">Password</p>
                                                 <input value={inputState.password} name="password" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Password" id="password" />
                                             </label>
                                             <br />
                                             <br />
                                             <label className="block mt-2 w-full" htmlFor="name">
-                                                <p className="mb-1 font-bold text-base">Name</p>
+                                                <p className="mb-1 font-medium text-sm">Name</p>
                                                 <input value={inputState.name} name="name" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add name" id="name" />
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="notes">
-                                                <p className="mb-1 font-bold text-base">Notes</p>
-                                                <textarea value={inputState.notes} name="notes" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add notes" id="notes"></textarea>
+                                                <p className="mb-1 font-medium text-sm">Note</p>
+                                                <textarea value={inputState.notes} name="notes" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add note" id="notes"></textarea>
                                             </label>
                                             <div className="mt-4 w-full flex justify-between">
                                                 <button

@@ -3,10 +3,10 @@ const { Encrypt, Decrypt } = require("../encryption/encrypt.password");
 
 module.exports = {
     addNewPassword: (req, res) => {
-        const { payload: { websiteURL, login, password, name, notes } } = req.body;
+        const { payload: { email, websiteURL, login, password, name, notes } } = req.body;
         const { iv, _password } = Encrypt(password);
-        const query = "INSERT INTO passwords (webpage,login,password,name,notes,iv) VALUES(?,?,?,?,?,?);";
-        const data = [websiteURL, login, _password, name, notes, iv];
+        const query = "INSERT INTO passwords (email,webpage,login,password,name,notes,iv) VALUES(?,?,?,?,?,?,?);";
+        const data = [email, websiteURL, login, _password, name, notes, iv];
         connection.query(query, data, (err, result) => {
             if (err) return res.status(500).send(err);
             console.log(result);
@@ -19,5 +19,8 @@ module.exports = {
             if (err) return res.status(500).send(err);
             res.status(200).send(result)
         })
+    },
+    decryptPassword: (req, res) => {
+        res.send(Decrypt(req.body.encryption));
     }
 }

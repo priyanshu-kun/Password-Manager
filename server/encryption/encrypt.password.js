@@ -21,16 +21,16 @@ const Encrypt = (password) => {
     }
 }
 
-const Decrypt = (encryption) => {
+const Decrypt = ({ password, iv }) => {
     const Decipher_password = crypto.createDecipheriv(
         'aes-256-ctr',
         Buffer.from(process.env.ENCRYPTION_KEY),
-        Buffer.from(encryption.iv, "hex")
+        Buffer.from(iv, "hex")
     );
     const decryptPassword = Buffer.concat(
         [
             Decipher_password.update(
-                Buffer.from(encryption._password)
+                Buffer.from(password, "hex")
             ),
             Decipher_password.final()
         ]
