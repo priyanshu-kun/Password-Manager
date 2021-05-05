@@ -4,11 +4,21 @@ import { faCaretDown, faClock, faEye, faEllipsisH, faExternalLinkAlt, faCopy, fa
 import client_http_req_functions from "../../client-http/password.http"
 import { Dialog, Transition } from "@headlessui/react";
 
-function InfoUi({ password: { email, login, name, notes, password, webpage, iv } }) {
+
+
+function InfoUi({ password: { email, login, name, notes, password, webpage, iv, id } }) {
+    const initialState = {
+        websiteURL: webpage,
+        name: name,
+        notes: notes
+    }
     // console.log("passwordArray: ", password)
     const [open, setOpen] = useState(false);
-    const [_password, set_Password] = useState("");
+    const [_password, set_Password] = useState("•••••••••••••••");
     const [showPassword, setShowPassword] = useState(true);
+    const [editPassword, setEditPassword] = useState(initialState)
+    const [saveBtn, setSaveBtn] = useState(false)
+
     const cancelButtonRef = useRef();
 
     function closeModal() {
@@ -17,7 +27,6 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
 
     function openModal() {
         setOpen(true);
-        encryptPassword({ password, iv })
     }
 
     const encryptPassword = (encryption) => {
@@ -25,6 +34,27 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
             set_Password(res);
         })
     }
+
+    const deleteRecord = (id) => {
+        client_http_req_functions.deleteRecord(id).then(res => {
+            window.location.reload();
+        })
+    }
+
+    function controlInputs(e) {
+        // console.log(e.target.name)
+        setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
+    }
+
+    useEffect(() => {
+        if (editPassword.websiteURL !== webpage || editPassword.name !== name || editPassword.notes !== notes) {
+            setSaveBtn(true)
+        } else {
+            setSaveBtn(false)
+        }
+    }, [editPassword])
+
+
 
     return (
         <>
@@ -147,14 +177,14 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                     <form className="w-full">
                                         <label className="block mt-2 w-full" htmlFor="email">
                                             <p className="mb-1 font-medium text-sm">Email</p>
-                                            <input value={email} onChange={e => console.log(e.target.value)} name="email" className="w-full
+                                            <input value={email} readOnly name="email" className="w-full
                                              font-semibold text-sm rounded-lg py-3
                                               px-5 bg-input_bg outline-none 
                                               custom-hover-class" type="text" placeholder="Add email" id="email" />
                                         </label>
                                         <label className="block mt-2 w-full" htmlFor="websiteURL">
                                             <p className="mb-1 font-medium text-sm">Website URL</p>
-                                            <input value={webpage} onChange={e => console.log(e.target.value)} name="websiteURL" className="w-full 
+                                            <input value={editPassword.websiteURL} onChange={controlInputs} name="websiteURL" className="w-full 
                                             font-semibold text-sm
                                              rounded-lg py-3 px-5 
                                              bg-input_bg outline-none 
@@ -162,7 +192,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                         </label>
                                         <label className="block mt-2 w-full" htmlFor="login">
                                             <p className="mb-1 font-medium text-sm">Login</p>
-                                            <input value={login} onChange={e => console.log(e.target.value)} name="login" className="w-full
+                                            <input value={login} readOnly name="login" className="w-full
                                              font-semibold text-sm rounded-lg
                                               py-3 px-5 bg-input_bg outline-none
                                                custom-hover-class" type="text" placeholder="Add Login details" id="login" />
@@ -175,9 +205,16 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                                 text-sm rounded-lg 
                                                 py-3 px-5 bg-input_bg 
                                                 outline-none 
-                                                custom-hover-class" type={showPassword ? "password" : "text"} placeholder="Add Password" id="password" readonly />
+                                                custom-hover-class"
+                                                    onContextMenu={(e) => {
+                                                        if (e.type === 'contextmenu') {
+                                                            e.preventDefault();
+                                                        }
+                                                    }}
+                                                    type={showPassword ? "password" : "text"} placeholder="Add Password" id="password" readOnly />
                                                 <button onClick={(e) => {
                                                     e.preventDefault();
+                                                    encryptPassword({ password, iv })
                                                     setShowPassword(!showPassword);
                                                 }} style={{ outline: 'none' }} className="text-lg -ml-10 opacity-80"><FontAwesomeIcon icon={faEye} /></button>
                                                 <button
@@ -188,7 +225,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                                     px-6 hover:bg-yellow-300
                                                     hover:border-transparent 
                                                     hover:text-white transition duration-20 
-                                                    flex justify-around items-center "
+                                                    flex justify-around items-center custom-copy"
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigator.clipboard.writeText(_password);
@@ -201,7 +238,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                         <br />
                                         <label className="block mt-2 w-full" htmlFor="name">
                                             <p className="mb-1 font-medium text-sm">Name</p>
-                                            <input value={name} onChange={e => console.log(e.target.value)} name="name" className="w-full 
+                                            <input value={editPassword.name} onChange={controlInputs} name="name" className="w-full 
                                             font-semibold text-sm 
                                             rounded-lg py-3 px-5 
                                             bg-input_bg outline-none 
@@ -209,7 +246,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                         </label>
                                         <label className="block mt-2 w-full" htmlFor="notes">
                                             <p className="mb-1 font-medium text-sm">Note</p>
-                                            <textarea value={notes} onChange={e => console.log(e.target.value)} name="notes" className="w-full 
+                                            <textarea value={editPassword.notes} onChange={controlInputs} name="notes" className="w-full 
                                             font-semibold text-sm 
                                             rounded-lg py-3 px-5 
                                             bg-input_bg outline-none
@@ -231,9 +268,10 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                             >
                                                 cancel
                   </button>
-                                            <button
-                                                type="button"
-                                                className="inline-flex
+                                            {
+                                                saveBtn ? <button
+                                                    type="button"
+                                                    className="inline-flex
                                                  justify-center px-10 
                                                  py-2 text-sm font-semibold 
                                                  text-white bg-green-400 border
@@ -243,13 +281,21 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                                     focus-visible:ring-2 
                                                     focus-visible:ring-offset-2 
                                                     focus-visible:ring-green-500"
-                                                onClick={closeModal}
-                                            >
-                                                save
-                  </button>
-                                            <button
-                                                type="submit"
-                                                className="inline-flex 
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        client_http_req_functions.editRecord(editPassword, id).then(res => {
+                                                            console.log(res);
+                                                        })
+                                                    }}
+                                                >
+                                                    save
+                  </button> : <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        deleteRecord(id)
+                                                    }}
+                                                    type="submit"
+                                                    className="inline-flex 
                                                 justify-center
                                                  px-10 py-2 text-sm
                                                  font-semibold text-white 
@@ -261,9 +307,12 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv }
                                                 focus-visible:ring-red-500
                                                  flex justify-around items-center"
 
-                                            >
-                                                <FontAwesomeIcon className="text-white mr-1" icon={faTrash} /> Delete
+                                                >
+
+                                                    <FontAwesomeIcon className="text-white mr-1" icon={faTrash} /> Delete
                   </button>
+                                            }
+
                                         </div>
                                     </form>
                                 </div>

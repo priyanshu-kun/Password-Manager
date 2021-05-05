@@ -14,6 +14,7 @@ function App() {
             setPasswordArray(res);
         }).catch(e => console.error("ERROR: while getting all passwords", e));
     }, [])
+    console.log("passwordArray: ", passwordArray)
     return (
         <div className="App">
             <Navbar />
@@ -24,7 +25,7 @@ function App() {
                     <div className="w-2/4 h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center">Last used <FontAwesomeIcon className="ml-1 text-base" icon={faClock} /></div>
                 </div>
                 {
-                    (passwordArray !== []) && passwordArray.map(password => {
+                    passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.map(password => {
                         return <InfoUi password={password} key={password.id} />
                     })
                 }

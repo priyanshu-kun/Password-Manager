@@ -30,5 +30,28 @@ export default {
         catch (e) {
             console.error(e);
         }
+    },
+    deleteRecord: async (id) => {
+        try {
+            const res = await axios.delete(`http://localhost:5000/api/passwords/deleteRecord`, {
+                data: {
+                    id: id
+                }
+            })
+            if (res.status === 500) {
+                throw new Error("Database error!");
+            }
+            return res.data;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+    editRecord: async (edit, id) => {
+        try {
+
+        } catch (e) {
+            console.log(e);
+        }
     }
 }

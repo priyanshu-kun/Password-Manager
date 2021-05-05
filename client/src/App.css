@@ -184,3 +184,8 @@ table {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 0 3px #ff88004d;
 }
+
+.custom-copy:hover * {
+    transition: all 0.2s ease;
+    color: #fff;
+}

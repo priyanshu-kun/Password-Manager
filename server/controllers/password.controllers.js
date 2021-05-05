@@ -22,5 +22,13 @@ module.exports = {
     },
     decryptPassword: (req, res) => {
         res.send(Decrypt(req.body.encryption));
+    },
+    deleteRecord: (req, res) => {
+        console.log("REQ.BODY: ", req.body)
+        var sql = `DELETE FROM passwords WHERE id = ${req.body.id}`;
+        connection.query(sql, function (err, result) {
+            if (err) return res.status(500).send(err);
+            return res.status(200).json({ success: true });
+        });
     }
 }
