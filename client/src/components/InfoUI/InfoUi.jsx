@@ -46,6 +46,24 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
         setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
     }
 
+    function editRecord(e) {
+        e.preventDefault();
+        let value = {};
+        if (editPassword.websiteURL !== webpage) {
+            // value.webpage = editPassword.websiteURL;
+            value = { key: "webpage", data: editPassword.websiteURL }
+        }
+        else if (editPassword.name !== name) {
+            value = { key: "name", data: editPassword.name }
+        }
+        else {
+            value = { key: "notes", data: editPassword.notes }
+        }
+        client_http_req_functions.editRecord(value, id).then(res => {
+            window.location.reload();
+        })
+    }
+
     useEffect(() => {
         if (editPassword.websiteURL !== webpage || editPassword.name !== name || editPassword.notes !== notes) {
             setSaveBtn(true)
@@ -281,12 +299,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                                     focus-visible:ring-2 
                                                     focus-visible:ring-offset-2 
                                                     focus-visible:ring-green-500"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        client_http_req_functions.editRecord(editPassword, id).then(res => {
-                                                            console.log(res);
-                                                        })
-                                                    }}
+                                                    onClick={editRecord}
                                                 >
                                                     save
                   </button> : <button

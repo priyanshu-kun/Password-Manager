@@ -37,6 +37,7 @@ function ActionContainer() {
             setOpen(false);
             return alert("Password or websiteURL cannot be empty!")
         }
+        console.log("inputState: ", inputState)
         client_http_req_functions.addNewPassword(inputState);
         setInputState(initialState);
         setOpen(false);

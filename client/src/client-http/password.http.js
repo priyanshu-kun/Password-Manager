@@ -49,6 +49,11 @@ export default {
     },
     editRecord: async (edit, id) => {
         try {
+            const res = await axios.put("http://localhost:5000/api/passwords/updateRecord", { ...edit, id });
+            if (res.status === 500) {
+                throw new Error("Database error!");
+            }
+            return res.data;
 
         } catch (e) {
             console.log(e);
