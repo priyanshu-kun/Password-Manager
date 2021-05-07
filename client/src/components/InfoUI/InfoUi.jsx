@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faClock, faEye, faEllipsisH, faExternalLinkAlt, faCopy, faTrash } from '@fortawesome/free-solid-svg-icons'
 import client_http_req_functions from "../../client-http/password.http"
 import { Dialog, Transition } from "@headlessui/react";
+import MenuDropdown from "./dropdown/dropDown"
 
 
 
@@ -29,7 +30,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
         setOpen(true);
     }
 
-    const encryptPassword = (encryption) => {
+    const decryptPassword = (encryption) => {
         client_http_req_functions.decryptPassword(encryption).then(res => {
             set_Password(res);
         })
@@ -77,7 +78,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
     return (
         <>
             <div className="cursor-pointer" onClick={openModal}>
-                <div style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }} className="w-full h-16 grid grid-cols-3">
+                <div style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }} className="w-full h-16 grid grid-cols-2">
                     {/* logo and name */}
                     <div className=" flex justify-start items-center pl-6">
                         <img className="h-8
@@ -91,11 +92,6 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                             }
                         </div>
                     </div>
-                    {/* last use */}
-                    <div className=" flex items-center pl-8 text-base opacity-80">
-                        <h1>2 months ago</h1>
-                    </div>
-                    {/* other options */}
                     <div className="flex items-center justify-around">
                         <a
                             onClick={e => e.stopPropagation()} href={webpage} className="
@@ -105,6 +101,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                         font-medium custom-hover 
                         flex justify-around 
                         items-center
+                      
                          hover:underline
                          "
                         >
@@ -114,29 +111,11 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                         hover-ele 
                         flex justify-center 
                         items-center">
-                            <FontAwesomeIcon className="text-lg opacity-60 cursor-pointer relative custom-style"
-                                icon={faEllipsisH} />
+                            <MenuDropdown openModal={openModal} password={_password} login={login} />
                         </span>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -232,7 +211,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                                     type={showPassword ? "password" : "text"} placeholder="Add Password" id="password" readOnly />
                                                 <button onClick={(e) => {
                                                     e.preventDefault();
-                                                    encryptPassword({ password, iv })
+                                                    decryptPassword({ password, iv })
                                                     setShowPassword(!showPassword);
                                                 }} style={{ outline: 'none' }} className="text-lg -ml-10 opacity-80"><FontAwesomeIcon icon={faEye} /></button>
                                                 <button

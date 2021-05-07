@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from "./components/Navbar/Navbar"
-import ActionContainer from "./components/ActionContainer/ActionContainer";
-import InfoUi from "./components/InfoUI/InfoUi";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faClock } from '@fortawesome/free-solid-svg-icons'
 import client_http_req_functions from "./client-http/password.http";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import Password from "./components/Password";
+import ProfilePage from "./components/Profile/ProfilePage";
+import Security from "./components/Security/Security";
+import _404NotFound from "./_404NotFound"
 import "./App.css";
 
 function App() {
@@ -18,18 +24,12 @@ function App() {
     return (
         <div className="App">
             <Navbar />
-            <ActionContainer />
-            <div className="md:container-lg md:mx-auto p-3 w-3/4 min-h-table rounded-lg mt-60  ">
-                <div style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }} className="w-full h-16  flex items-center">
-                    <div className="w-1/3 h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center cursor-pointer">Name<FontAwesomeIcon className="ml-1 text-lg" icon={faCaretDown} /></div>
-                    <div className="w-2/4 h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center">Last used <FontAwesomeIcon className="ml-1 text-base" icon={faClock} /></div>
-                </div>
-                {
-                    passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.map(password => {
-                        return <InfoUi password={password} key={password.id} />
-                    })
-                }
-            </div>
+            <Switch>
+                <Route exact path="/" render={(props) => <Password {...props} passwordArray={passwordArray} />} />
+                <Route exact path="/profile" component={ProfilePage} />
+                <Route exact path="/security" component={Security} />
+                <Route path="*" component={_404NotFound} />
+            </Switch>
         </div>
     )
 }

@@ -163,10 +163,7 @@ table {
     border-radius: 6px;
 }
 
-.hover-ele:hover {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    /* border: 1px solid ; */
-}
+
 
 .custom-hover-class {
     border: 1px solid transparent;
