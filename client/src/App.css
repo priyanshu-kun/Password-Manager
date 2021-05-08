@@ -186,3 +186,10 @@ table {
     transition: all 0.2s ease;
     color: #fff;
 }
+
+.profile-side-bg {
+    background: url("./Assets/pexels-cottonbro-7319068.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}

@@ -42,7 +42,7 @@ export default function MenuDropdown({ openModal, password, login }) {
                                                 className={`${active ? "bg-yellow-500 text-white" : "text-gray-600"
                                                     } transition duration-200  font-semibold group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                             >
-                                                <FontAwesomeIcon className="mr-2" icon={faEdit} />
+                                                <FontAwesomeIcon className="ml-2 mr-2" icon={faEdit} />
                                                 See Details
                                             </button>
                                         )}
@@ -58,12 +58,13 @@ export default function MenuDropdown({ openModal, password, login }) {
                                                 }}
                                                 className={`${active ? "bg-yellow-500 text-white" : "text-gray-600"} transition duration-200  font-semibold group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                             >
-                                                <FontAwesomeIcon className="mr-2" icon={faCopy} />
+                                                <FontAwesomeIcon className="ml-2 mr-2" icon={faCopy} />
                                                 Copy Password
                                             </button>
                                         )}
                                     </Menu.Item>
                                 </div>
+                                <hr />
                                 <div className="px-1 py-1">
                                     <Menu.Item>
                                         {({ active }) => (
@@ -77,7 +78,7 @@ export default function MenuDropdown({ openModal, password, login }) {
                                                 className={`${active ? "bg-yellow-500 text-white" : "text-gray-600"
                                                     } transition duration-200 font-semibold  group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                             >
-                                                <FontAwesomeIcon className="mr-2" icon={faCopyright} />
+                                                <FontAwesomeIcon className="ml-2 mr-2" icon={faCopyright} />
                                                 Copy Login
                                             </button>
                                         )}

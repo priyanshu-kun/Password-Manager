@@ -120,6 +120,11 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
 
 
 
+            {/* 
+    Popup for showing details of storing password
+ */}
+
+
             <Transition show={open} as={Fragment}>
                 <Dialog
                     as="div"
@@ -165,11 +170,12 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                               transform bg-white shadow-xl rounded-2xl 
                               mt-20">
                                 <Dialog.Title
-                                    as="h3"
-                                    className="text-xl opacity-60 font-black leading-6 text-gray-900"
+                                    as="h1"
+                                    className="text-2xl my-4 opacity-60 font-black leading-6 text-gray-900"
                                 >
                                     {name}
                                 </Dialog.Title>
+                                <hr />
                                 <div className="mt-2">
                                     <form className="w-full">
                                         <label className="block mt-2 w-full" htmlFor="email">
@@ -253,7 +259,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                             <button
                                                 type="button"
                                                 className="inline-flex 
-                                                justify-center px-10 py-2
+                                                justify-center px-10 py-3
                                                  text-sm font-semibold 
                                                  text-red-900 bg-red-100 
                                                  border border-transparent 
@@ -270,7 +276,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                                     type="button"
                                                     className="inline-flex
                                                  justify-center px-10 
-                                                 py-2 text-sm font-semibold 
+                                                 py-3 text-sm font-semibold 
                                                  text-white bg-green-400 border
                                                   border-transparent
                                                    rounded-md hover:bg-green-500
@@ -289,7 +295,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                                     type="submit"
                                                     className="inline-flex 
                                                 justify-center
-                                                 px-10 py-2 text-sm
+                                                 px-10 py-3 text-sm
                                                  font-semibold text-white 
                                                 bg-red-600 rounded-md 
                                                 hover:bg-red-800 

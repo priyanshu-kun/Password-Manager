@@ -99,6 +99,7 @@ function ActionContainer() {
                                     >
                                         Register New Password
                 </Dialog.Title>
+                                    <hr />
                                     <div className="mt-2 w-full flex justify-center">
                                         <form className="w-full" onSubmit={submitInfo}>
                                             <label className="block mt-2 w-full" htmlFor="websiteURL">
