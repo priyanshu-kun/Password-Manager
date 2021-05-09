@@ -37,7 +37,7 @@ function Navbar() {
                                 </div>
 
                                 <div style={{ width: "34rem" }}>
-                                    <input className="block w-full py-2 rounded-md text-base pl-5 font-medium bg-white bg-opacity-20 text-white focus:bg-white outline-none focus:text-black transition duration-200" type="text" placeholder="Search e.g: instagram" />
+                                    <input className="block w-full py-2 rounded-md text-sm pl-5 font-semibold bg-white bg-opacity-20 text-white focus:bg-white outline-none focus:text-black transition duration-200 placeholder-gray-100 placeholder-opacity-30 focus:placeholder-gray-600" type="text" placeholder="Search e.g: instagram" />
                                 </div>
 
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

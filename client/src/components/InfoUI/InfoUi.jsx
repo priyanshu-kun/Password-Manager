@@ -293,8 +293,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                                                         deleteRecord(id)
                                                     }}
                                                     type="submit"
-                                                    className="inline-flex 
-                                                justify-center
+                                                    className="
                                                  px-10 py-3 text-sm
                                                  font-semibold text-white 
                                                 bg-red-600 rounded-md 

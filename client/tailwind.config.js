@@ -24,6 +24,7 @@ module.exports = {
       minHeight: {
         '0': '0',
         'table': '30rem',
+        'sm-table': '20rem',
         '1/2': '50%',
         '3/4': '75%',
         'full': '100%',
