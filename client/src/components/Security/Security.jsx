@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
-function Security() {
+function Security({ passwordArray }) {
+
+    useEffect(() => {
+        var occ = {};
+        const riskPassword = passwordArray.forEach((el) => {
+            console.log(">>> ", el.password)
+        });
+    }, [passwordArray])
+
     return (
-        <div style={{ border: "1px solid rgba(0,0,0,0.2)" }} className="w-4/5 min-h-sm-table mx-auto mt-32 mb-20 rounded-lg">
+        <div style={{ border: "1px solid rgba(0,0,0,0.2)" }} className="w-4/5 mx-auto mt-32 mb-20 rounded-lg">
             <div style={{ borderBottom: "1px solid rgba(0,0,0,0.1)" }} className="w-full flex justify-between items-center rounded-tl-lg rounded-tr-lg px-4 h-16 header ">
                 <h1 className="text-black font-black text-xl ">AT-RISK PASSWORDS</h1>
                 <div className="w-3/12 flex justify-around">

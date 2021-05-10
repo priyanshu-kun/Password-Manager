@@ -27,7 +27,7 @@ function App() {
             <Switch>
                 <Route exact path="/" render={(props) => <Password {...props} passwordArray={passwordArray} />} />
                 <Route exact path="/profile" component={ProfilePage} />
-                <Route exact path="/security" component={Security} />
+                <Route exact path="/security" render={(props) => <Security {...props} passwordArray={passwordArray} />} />
                 <Route path="*" component={_404NotFound} />
             </Switch>
         </div>
