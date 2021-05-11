@@ -101,7 +101,6 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                         font-medium custom-hover 
                         flex justify-around 
                         items-center
-                      
                          hover:underline
                          "
                         >
@@ -110,7 +109,8 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                         <span onClick={e => e.stopPropagation()} className="
                         hover-ele 
                         flex justify-center 
-                        items-center">
+                        items-center 
+                         ">
                             <MenuDropdown openModal={openModal} password={_password} login={login} />
                         </span>
                     </div>

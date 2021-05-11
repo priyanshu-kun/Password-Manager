@@ -7,7 +7,7 @@ import Profile from "./Profile/Profile"
 function Navbar() {
     return (
         <>
-            <Disclosure as="nav" className="bg-dark fixed top-0 left-0 right-0 z-999">
+            <Disclosure as="nav" className="bg-dark fixed top-0 left-0 right-0 z-9999">
                 {({ open }) => (
                     <>
                         <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8">

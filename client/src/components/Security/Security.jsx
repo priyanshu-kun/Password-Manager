@@ -1,14 +1,45 @@
 import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import client_http_req_functions from "../../client-http/password.http"
 
 function Security({ passwordArray }) {
 
-    useEffect(() => {
-        var occ = {};
-        const riskPassword = passwordArray.forEach((el) => {
-            console.log(">>> ", el.password)
-        });
+    const decryptAllPasswords = async () => {
+        try {
+            const passwords = [];
+            let encryption = {};
+            if (passwordArray.length > 0) {
+                for (let i = 0; i < passwordArray.length; i++) {
+                    encryption = { password: passwordArray[i].password, iv: passwordArray[i].iv }
+                    const password = await client_http_req_functions.decryptPassword(encryption);
+                    passwords.push({ id: passwordArray[i].id, name: passwordArray[i].name, password });
+                }
+            }
+            return passwords;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    const getDuplicatePasswords = (passwords) => {
+        let counts = {};
+        passwords.forEach((x) => { counts[x.password] = (counts[x.password] || 0) + 1; });
+        console.log("counts: ", counts)
+    }
+
+    useEffect(async () => {
+        try {
+            const passwords = await decryptAllPasswords();
+            if (passwords.length > 0) {
+                const duplicatePasswords = getDuplicatePasswords(passwords);
+                // console.log("duplicatePasswords: ", duplicatePasswords)
+            }
+        }
+        catch (e) {
+            console.error(e);
+        }
     }, [passwordArray])
 
     return (

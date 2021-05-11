@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 
 export default function MenuDropdown({ openModal, password, login }) {
     return (
-        <div className="w-56 text-right ">
+        <div className="w-56 text-right">
             <Menu as="div" className="relative inline-block text-left">
                 {({ open }) => (
                     <>
@@ -32,7 +32,7 @@ export default function MenuDropdown({ openModal, password, login }) {
                         >
                             <Menu.Items
                                 static
-                                className="p-2  absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                className="p-2  absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-888"
                             >
                                 <div className="px-1 py-1">
                                     <Menu.Item>
