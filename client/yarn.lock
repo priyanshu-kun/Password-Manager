@@ -5054,6 +5054,11 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
+find-array-duplicates@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/find-array-duplicates/-/find-array-duplicates-1.0.6.tgz#91780a2adf3a5c0f8d1b2b43ad3db424819d977a"
+  integrity sha512-yD5XfEyvVhPrZvCv3SD67aAYkm8ThlrAMjztVDu9ykiNXNujWmKnuq4uvVAUnRtWHFjxV9h1RQI1TfAE+n5GUw==
+
 find-cache-dir@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-2.1.0.tgz#8d0f94cd13fe43c6c7c261a0d86115ca918c05f7"

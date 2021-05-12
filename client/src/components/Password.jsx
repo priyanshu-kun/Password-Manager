@@ -8,7 +8,7 @@ function Password({ passwordArray }) {
     return (
         <>
             <ActionContainer />
-            <div className="md:container-lg md:mx-auto p-3 w-3/4 min-h-table rounded-lg mt-60  ">
+            <div className="md:container-lg md:mx-auto p-3 w-3/4 min-h-table rounded-lg mt-52  ">
                 <div style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }} className="w-full h-16  flex items-center">
                     <div className="w-full h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center cursor-pointer">Name<FontAwesomeIcon className="ml-1 text-lg" icon={faCaretDown} /></div>
                 </div>
