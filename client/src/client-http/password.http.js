@@ -24,7 +24,6 @@ export default {
     decryptPassword: async (encryption) => {
         try {
             const res = await axios.post("http://localhost:5000/api/passwords/decryptPassword", { encryption });
-            console.log("Response: ", res.data)
             return res.data;
         }
         catch (e) {
