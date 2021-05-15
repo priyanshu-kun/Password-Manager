@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/passwords", require("./routes/passwords"));
+app.use("/api/users", require("./routes/user"));
 
 
 const port = process.env.PORT || 5000;

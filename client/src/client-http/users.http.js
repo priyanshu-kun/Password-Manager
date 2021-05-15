@@ -1,17 +1,29 @@
 import axios from "axios";
 
+// endpoints
+/**
+ * http://localhost:5000/api/users/addNewUser
+ * http://localhost:5000/api/users/loginUser
+ * http://localhost:5000/api/users/getMe
+ * http://localhost:5000/api/users/deleteUser
+ * http://localhost:5000/api/users/updateUser
+ * http://localhost:5000/api/users/logOut
+ */
+
 export default {
-   registerUser: async (data) => {
+   registerUser: async (payload) => {
         try {
-            console.log("DATA: ",data)
+            const res = await axios.post("http://localhost:5000/api/users/addNewUser",{payload});
+            console.log(res);
         }
         catch(e) {
             console.error(e)
         }
    },
-   loginUser: async (data) => {
+   loginUser: async (payload) => {
         try {
-            console.log("DATA: ",data)
+          const res = await axios.post("http://localhost:5000/api/users/loginUser",{payload});
+          console.log(res);
         }
         catch(e) {
             console.error(e)

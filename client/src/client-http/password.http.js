@@ -38,7 +38,7 @@ export default {
                 }
             })
             if (res.status === 500) {
-                throw new Error("Database error!");
+                throw new Error(res.data);
             }
             return res.data;
         }
@@ -50,7 +50,7 @@ export default {
         try {
             const res = await axios.put("http://localhost:5000/api/passwords/updateRecord", { ...edit, id });
             if (res.status === 500) {
-                throw new Error("Database error!");
+                throw new Error(res.data);
             }
             return res.data;
 
