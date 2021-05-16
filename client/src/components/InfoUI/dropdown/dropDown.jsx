@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faCopy, faCopyright } from '@fortawesome/free-solid-svg-icons'
 import { ChevronDownIcon } from "@heroicons/react/solid";

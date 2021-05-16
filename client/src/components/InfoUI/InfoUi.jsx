@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faClock, faEye, faEllipsisH, faExternalLinkAlt, faCopy, faTrash } from '@fortawesome/free-solid-svg-icons'
+import {faEye, faExternalLinkAlt, faCopy, faTrash } from '@fortawesome/free-solid-svg-icons'
 import client_http_req_functions from "../../client-http/password.http"
 import { Dialog, Transition } from "@headlessui/react";
 import MenuDropdown from "./dropdown/dropDown"
@@ -71,7 +71,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
         } else {
             setSaveBtn(false)
         }
-    }, [editPassword])
+    }, [editPassword.websiteURL,editPassword.name,editPassword.notes,name,webpage,notes])
 
 
 
@@ -84,7 +84,7 @@ function InfoUi({ password: { email, login, name, notes, password, webpage, iv, 
                         <img className="h-8
                          w-12 object-cover mr-3 
                          rounded-lg"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="logo" />
                         <div className="h-2/4 flex flex-col items-start">
                             <h3 className={`font-semibold text-base ${(email || login) && "-mt-1.5"}`}>{name}</h3>
                             {

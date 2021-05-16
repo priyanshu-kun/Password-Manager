@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import InfoUi from "./InfoUI/InfoUi";
 
-function Password({ passwordArray }) {
+function Password({ passwordArray,Search }) {
     return (
         <>
             <ActionContainer />
@@ -13,9 +13,15 @@ function Password({ passwordArray }) {
                     <div className="w-full h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center cursor-pointer">Name<FontAwesomeIcon className="ml-1 text-lg" icon={faCaretDown} /></div>
                 </div>
                 {
-                    passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.map(password => {
-                        return <InfoUi password={password} key={password.id} />
-                    })
+                    passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.filter((password) => {
+                        console.log(Search === "",password.name)
+                        if(Search === "") {
+                            return password
+                        }
+                        else if(password.name.toLowerCase().includes(Search.toLowerCase())) {
+                            return password
+                        }
+                    }).map(password => <InfoUi password={password} key={password.id} />)
                 }
             </div>
         </>

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon, PlusIcon } from '@heroicons/react/outline'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Profile from "./Profile/Profile"
 
 
-function Navbar() {
+function Navbar({setSearch}) {
+   
     return (
         <>
             <Disclosure as="nav" className="bg-dark fixed top-0 left-0 right-0 z-9999">
@@ -37,13 +38,19 @@ function Navbar() {
                                 </div>
 
                                 <div style={{ width: "34rem" }}>
-                                    <input className="block w-full py-2 rounded-md text-sm pl-5 font-semibold bg-white bg-opacity-20 text-white focus:bg-white outline-none focus:text-black transition duration-200 placeholder-gray-100 placeholder-opacity-30 focus:placeholder-gray-600" type="text" placeholder="Search e.g: instagram" />
+                                    <input style={{caretColor: "orange"}} className="block w-full py-2 
+                                    rounded-md text-sm pl-5 
+                                    font-semibold bg-white bg-opacity-20 
+                                    text-white focus:bg-white outline-none 
+                                    focus:text-black transition duration-200 
+                                    placeholder-gray-100 placeholder-opacity-30 
+                                    focus:placeholder-gray-600" type="text" placeholder="Search e.g: gmail" onChange={(e) => {
+                                        setSearch(e.target.value);
+                                    }} />
+                                    <div className=""></div>
                                 </div>
 
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                    {/* <button className="w-30 h-10 mr-5 text-base font-medium px-4 rounded-md bg-accent text-white shadow flex justify-around items-center hover:bg-hover transition duration-200">
-                                        <PlusIcon className="w-6 h-6" /> <span>Add Password</span>
-                                    </button> */}
                                     <button className="bg-dark p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                         <span className="sr-only">View notifications</span>
                                         <BellIcon className="h-6 w-6" aria-hidden="true" />

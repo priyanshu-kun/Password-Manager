@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle, faKey, faShieldAlt, faUserCircle, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faKey, faShieldAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import {
     Link
 } from "react-router-dom";
@@ -40,28 +40,14 @@ function Profile() {
                                 static
                                 className="origin-top-right absolute right-0 mt-2 w-56 text-center rounded-md shadow-lg p-4  bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
+                              
                                 <Menu.Item>
                                     {({ active }) => (
                                         <Link
-                                            to="/profile"
+                                            to="/"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-borderr'
-                                            )}
-                                        >
-                                            <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faUserCircle} /><span className="text-sm font-semibold  opacity-80 text-left">
-                                                Your Profile
-                                                                    </span>
-                                        </Link>
-                                    )}
-                                </Menu.Item>
-                                <Menu.Item>
-                                    {({ active }) => (
-                                        <Link
-                                            to="/passwords"
-                                            className={classNames(
-                                                active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border'
+                                                ' px-4  text-gray-700 py-3 rounded flex items-center justify-start box-border'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faKey} /><span className="text-sm font-semibold  opacity-80">Passwords</span>
@@ -74,7 +60,7 @@ function Profile() {
                                             href="http://blank"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 pointer-events-none'
+                                                ' px-4  text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 pointer-events-none'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faUserSecret} /><span className="text-sm font-semibold opacity-80">Secure Notes</span>
@@ -87,7 +73,7 @@ function Profile() {
                                             href="http://blank"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 cursor-not-allowed pointer-events-none'
+                                                ' px-4  text-gray-700 py-3 rounded flex items-center justify-start box-border opacity-30 cursor-not-allowed pointer-events-none'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faInfoCircle} /><span className="text-sm font-semibold  opacity-80">Personal Info</span>
@@ -101,7 +87,7 @@ function Profile() {
                                             to="/security"
                                             className={classNames(
                                                 active ? 'bg-gray-100' : '',
-                                                'block px-4 py-2 text-gray-700 py-3 rounded flex items-center justify-start box-borde'
+                                                ' px-4  text-gray-700 py-3 rounded flex items-center justify-start box-border'
                                             )}
                                         >
                                             <FontAwesomeIcon className="text-xl mr-3 text-accent" icon={faShieldAlt} /><span className="text-sm font-semibold  opacity-80">Security Mesures</span>

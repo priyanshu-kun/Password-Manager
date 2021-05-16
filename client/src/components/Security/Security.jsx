@@ -5,8 +5,6 @@ import client_http_req_functions from "../../client-http/password.http"
 
 function Security({ passwordArray }) {
     const [duplicate, setDuplicate] = useState([])
-    const [reused, setReused] = useState(false)
-    const [all, setAll] = useState(true)
 
     const decryptAllPasswords = async () => {
         try {
@@ -27,7 +25,6 @@ function Security({ passwordArray }) {
     }
 
     const getDuplicatePasswords = (passwords) => {
-        let counts = []
         let counter = {}
         let only_passwords = passwords.map(i => i.password);
         only_passwords.forEach((obj) => {
@@ -41,19 +38,21 @@ function Security({ passwordArray }) {
         return res;
     }
 
-    useEffect(async () => {
-        try {
-            const passwords = await decryptAllPasswords();
-            if (passwords.length > 0) {
-                const duplicatePasswords = getDuplicatePasswords(passwords);
-                setDuplicate(duplicatePasswords);
-                // console.log("duplicatePasswords: ", duplicatePasswords)
+    // eslint-disable-next-line
+    const getduplicate = async () => {
+            try {
+                const passwords = await decryptAllPasswords();
+                if (passwords.length > 0) {
+                    const duplicatePasswords = getDuplicatePasswords(passwords).filter(i => i !== null);
+                    setDuplicate(duplicatePasswords);
+                }
             }
-        }
-        catch (e) {
-            console.error(e);
-        }
-    }, [passwordArray])
+            catch (e) {
+                console.error(e);
+            }
+    }
+    // eslint-disable-next-line
+    useEffect(getduplicate, [passwordArray])
 
     return (
         <div style={{ border: "1px solid rgba(0,0,0,0.2)" }} className="w-4/5 mx-auto mt-32 mb-20 rounded-lg">
@@ -73,7 +72,7 @@ function Security({ passwordArray }) {
                                     <img className="h-8
                              w-12 object-cover mr-3 
                              rounded-lg"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="logo" />
                                     <div className="h-2/4 flex flex-col items-start">
                                         <h3 className="font-semibold text-base" >{item.name}</h3>
                                     </div>
