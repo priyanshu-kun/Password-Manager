@@ -116,7 +116,7 @@ function ActionContainer() {
                                             </label>
                                             <label className="block mt-2 w-full" htmlFor="password">
                                                 <p className="mb-1 font-medium text-sm">Password</p>
-                                                <input value={inputState.password} name="password" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="text" placeholder="Add Password" id="password" />
+                                                <input value={inputState.password} name="password" onChange={controlInputs} className="w-full font-semibold text-sm rounded-lg py-3 px-5 bg-input_bg outline-none custom-hover-class" type="password" placeholder="Add Password" id="password" />
                                             </label>
                                             <br />
                                             <br />
