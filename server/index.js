@@ -15,7 +15,6 @@ app.use("/api/passwords", require("./routes/passwords"));
 
 
 const port = process.env.PORT || 5000;
-const host = "http://localhost:" + port;
 app.listen(port, () => {
-    console.log(`App is alive on ${host}`);
+    console.log(`App is alive on ${port}`);
 })
