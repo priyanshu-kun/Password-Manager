@@ -1,15 +1,13 @@
 require("dotenv").config();
 const mysql = require("mysql2");
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: "mysql",
-    user: 'root',
-    password: "password",
-    database: 'password-manager',
-    connectionLimit: 10
+onst connection = mysql.createConnection({ 
+    host: 'localhost', 
+    user: 'root', 
+    password: "password", 
+    database: 'passwordManager' 
 })
+
 
 connection.connect(err => {
     if (err) {
