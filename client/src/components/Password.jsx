@@ -13,7 +13,7 @@ function Password({ passwordArray,Search }) {
                     <div className="w-full h-2/4 font-bold uppercase opacity-60 text-sm pl-8 flex items-center cursor-pointer">Name<FontAwesomeIcon className="ml-1 text-lg" icon={faCaretDown} /></div>
                 </div>
                 {
-                    passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.filter((password) => {
+                    passwordArray !== undefined && passwordArray.length === 0 ? <h1 className="opacity-30 ml-96 mt-8 font-black text-2xl uppercase">Start storing password🤗</h1> : passwordArray.filter((password) => {
                         console.log(Search === "",password.name)
                         if(Search === "") {
                             return password

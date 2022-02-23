@@ -1,9 +1,9 @@
-const mysql = require("mysql2");
 require("dotenv").config();
+const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'sql6.freesqldatabase.com',
+    user: 'sql6474372',
     password: process.env.DB_PASSWORD,
     database: 'password manager'
 })

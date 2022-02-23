@@ -10,7 +10,7 @@ function Security({ passwordArray }) {
         try {
             const passwords = [];
             let encryption = {};
-            if (passwordArray.length > 0) {
+            if (passwordArray !== undefined && passwordArray.length > 0) {
                 for (let i = 0; i < passwordArray.length; i++) {
                     encryption = { password: passwordArray[i].password, iv: passwordArray[i].iv }
                     const password = await client_http_req_functions.decryptPassword(encryption);

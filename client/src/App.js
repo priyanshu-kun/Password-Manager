@@ -19,6 +19,9 @@ function App() {
         }).catch(e => console.error("ERROR: while getting all passwords", e));
     }, [])
     console.log("passwordArray: ", passwordArray)
+    if(passwordArray === undefined) {
+        setPasswordArray([])
+    }
     return (
         <div className="App">
             <Navbar  setSearch={setSearch} />
