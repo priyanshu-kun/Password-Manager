@@ -41,7 +41,6 @@ function ActionContainer() {
         client_http_req_functions.addNewPassword(inputState);
         setInputState(initialState);
         setOpen(false);
-        window.location.reload();
     }
 
 

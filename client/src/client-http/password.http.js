@@ -6,10 +6,12 @@ export const apiURL = isProd ? "http://133.209.147.247/api" : "http://localhost:
 export default {
     addNewPassword: async (payload) => {
         try {
+            console.log(payload)
             const res = await axios.post(`${apiURL}/passwords/addNewPassword`, {
                 payload
             });
             console.log("res: ", res);
+            window.location.reload();
         }
         catch (e) {
             console.error(e);

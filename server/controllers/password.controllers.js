@@ -3,6 +3,7 @@ const { Encrypt, Decrypt } = require("../encryption/encrypt.password");
 
 module.exports = {
     addNewPassword: (req, res) => {
+        console.log("kaboom")
         const { payload: { email, websiteURL, login, password, name, notes } } = req.body;
         const { iv, _password } = Encrypt(password);
         const query = "INSERT INTO passwords (email,webpage,login,password,name,notes,iv) VALUES(?,?,?,?,?,?,?);";
