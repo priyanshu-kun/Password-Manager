@@ -1,5 +1,6 @@
 import axios from "axios";
-import { apiURL } from "../../config";
+const isProd = false
+export const apiURL = isProd ? "http://133.209.147.247/api" : "http://localhost:5000/api"
 
 // eslint-disable-next-line
 export default {
