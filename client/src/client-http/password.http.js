@@ -1,10 +1,11 @@
 import axios from "axios";
+import { apiURL } from "../../config";
 
 // eslint-disable-next-line
 export default {
     addNewPassword: async (payload) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/passwords/addNewPassword", {
+            const res = await axios.post(`${apiURL}/passwords/addNewPassword`, {
                 payload
             });
             console.log("res: ", res);
@@ -15,7 +16,7 @@ export default {
     },
     getAllPasswords: async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/passwords/getAllPasswords");
+            const res = await axios.get(`${apiURL}/passwords/getAllPasswords`);
             return res.data;
         }
         catch (e) {
@@ -24,7 +25,7 @@ export default {
     },
     decryptPassword: async (encryption) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/passwords/decryptPassword", { encryption });
+            const res = await axios.post(`${apiURL}/passwords/decryptPassword`, { encryption });
             return res.data;
         }
         catch (e) {
@@ -33,7 +34,7 @@ export default {
     },
     deleteRecord: async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/passwords/deleteRecord`, {
+            const res = await axios.delete(`${apiURL}/passwords/deleteRecord`, {
                 data: {
                     id: id
                 }
@@ -49,7 +50,7 @@ export default {
     },
     editRecord: async (edit, id) => {
         try {
-            const res = await axios.put("http://localhost:5000/api/passwords/updateRecord", { ...edit, id });
+            const res = await axios.put(`${apiURL}/passwords/updateRecord`, { ...edit, id });
             if (res.status === 500) {
                 throw new Error(res.data);
             }
